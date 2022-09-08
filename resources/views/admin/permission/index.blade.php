@@ -1,4 +1,5 @@
 <x-app-layout>
+    @if(Gate::check('can_do', ['permission read']))
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Permissions
@@ -8,10 +9,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-print-none with-border mb-8">
+                @if(Gate::check('can_do', ['permission create']))
                 <a href="{{ route('permission.create') }}" 
                     class="text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800">
                     {{ __('Add permission') }}
                 </a>
+                @endif
             </div>
 
             <!-- table -->
@@ -79,4 +82,5 @@
             </div>
         </div>
     </div>
+    @endif
 </x-app-layout>

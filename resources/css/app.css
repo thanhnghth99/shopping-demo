@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.checkbox {
+    column-count: 3;
+}

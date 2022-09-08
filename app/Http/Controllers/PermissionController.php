@@ -9,12 +9,14 @@ class PermissionController extends Controller
 {
     public function index(Permission $permissions)
     {
+        $this->authorize('can_do', ['permission read']);
         $permissions = $permissions->paginate(10);
         return view('admin.permission.index', compact('permissions'));
     }
 
     public function create(Permission $permission)
     {
+        $this->authorize('can_do', ['permission create']);
         $permission->all();
         return view('admin.permission.create');
     }
