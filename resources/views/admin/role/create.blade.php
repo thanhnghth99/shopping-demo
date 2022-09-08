@@ -26,8 +26,8 @@
                     <label for="exampleInputEmail1" class="mb-3 block text-xl font-medium text-[#07074D]">Status</label>
                     <select name="status" id="status" 
                             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                        <option value="1">Enable</option>
-                        <option value="0">Disable</option>
+                        <option value="{{ Role::STATUS_ENABLE }}">Enable</option>
+                        <option value="{{ Role::STATUS_DISABLE }}">Disable</option>
                     </select>
                 </div>
                 <div>

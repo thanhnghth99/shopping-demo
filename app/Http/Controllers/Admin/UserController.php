@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,15 +21,13 @@ class UserController extends Controller
         ];
         $users = $userService->getList($filter);
         return view('admin.user.index', compact('users'));
-        return view('admin.user.index');
     }
 
-    public function create(Role $role, User $user)
+    public function create(Role $role)
     {
         $this->authorize('can_do', ['user create']);
-        $user->all();
         $roles = $role->all();
-        return view('admin.user.create', ['roles' => $roles]);
+        return view('admin.user.create', compact('roles'));
     }
 
     public function store(StoreUserRequest $request, UserService $userService)
@@ -48,10 +46,10 @@ class UserController extends Controller
     public function edit(User $user, Role $role)
     {
         $this->authorize('can_do', ['user edit']);
-        $users = $user->find($user->id);
+        $users = $user->with('roles')->find($user->id)->toArray();
         $roles = $role->all();
-        $dataRoles = $users->roles->pluck('id')->toArray();
-        return view('admin.user.edit',['users' => $users, 'roles' => $roles, 'dataRoles' => $dataRoles]);
+
+        return view('admin.user.edit',['users' => $users, 'roles' => $roles]);
     }    
 
     public function update(UpdateUserRequest $request, UserService $userService, User $user)
@@ -65,6 +63,7 @@ class UserController extends Controller
 
     public function destroy(User $user, UserService $userService)
     {
+        $this->authorize('can_do', ['user delete']);
         $userService->delete($user);
         return redirect('/user')
             ->with('success', 'Successfully deleted.');

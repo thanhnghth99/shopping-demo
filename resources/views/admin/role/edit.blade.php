@@ -8,21 +8,16 @@
     <!-- component -->
     <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-[700px]">
-            <form action="{{ route('role.update', $roles->id) }}" method="POST">
+            <form action="{{ route('role.update', $roles['id']) }}" method="POST">
                 @method('PUT')
                 {{csrf_field()}}
                 <div>
-                    <x-forms.input label="Role name" name="name" id="name" placeholder="Role name" value="{{ $roles->name }}" required/>
+                    <x-forms.input label="Role name" name="name" id="name" placeholder="Role name" value="{{ $roles['name'] }}" required/>
                 </div>
                 <div class="mb-5">
                     <div>
-                        <label
-                            for="name"
-                            class="mb-3 block text-xl font-medium text-[#07074D]"
-                            >
-                            Permissions
-                        </label>
-                        <x-forms.checkbox-list id="permission" name="permission[]" :items="$permissions" :selected="$dataPermissions"/>
+                        <label for="name" class="mb-3 block text-xl font-medium text-[#07074D]">Permissions</label>
+                        <x-forms.checkbox-list id="permission" name="permission[]" :items="$permissions" :selected="Arr::pluck($roles['permissions'], 'id')"/>
                         <div class="mt-2">
                             <a href="{{ route('permission.create') }}" class="w-full rounded-md border border-[#07074D] bg-white px-1 mb-3 text-xm font-medium text-[#07074D]">+ Add permission</a>
                         </div>
@@ -30,19 +25,19 @@
                 </div>                
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="mb-3 block text-xl font-medium text-[#07074D]">Role status</label>
-                    <select name="status" id="cars" value="{{ $roles->status }}"
+                    <select name="status" id="cars" value="{{ $roles['status'] }}"
                             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                         <option 
-                            @if($roles->status == 1)
+                            @if($roles['status'] == Role::STATUS_ENABLE)
                                 selected
                             @endif
-                            value="1">Enable
+                            value="{{ Role::STATUS_ENABLE }}">Enable
                         </option>
                         <option 
-                            @if ($roles->status == 0)
+                            @if ($roles['status'] == Role::STATUS_DISABLE)
                                 selected
                             @endif
-                            value="0">Disable
+                            value="{{ Role::STATUS_DISABLE }}">Disable
                         </option>
                     </select>
                 </div>

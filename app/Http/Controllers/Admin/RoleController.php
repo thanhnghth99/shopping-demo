@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Permission;
@@ -22,12 +23,11 @@ class RoleController extends Controller
         return view('admin.role.index', compact('roles'));
     }
 
-    public function create(Permission $permission, Role $role)
+    public function create(Permission $permission)
     {
         $this->authorize('can_do', ['role create']);
-        $role->all();
         $permissions = $permission->all();
-        return view('admin.role.create', ['permissions' => $permissions]);
+        return view('admin.role.create', compact('permissions'));
     }
 
     public function store(StoreRoleRequest $request, RoleService $roleService)
@@ -46,11 +46,10 @@ class RoleController extends Controller
     public function edit(Role $role, Permission $permission)
     {
         $this->authorize('can_do', ['role edit']);
-        $roles = $role->find($role->id);
+        $roles = $role->with('permissions')->find($role->id)->toArray();
         $permissions = $permission->all();
-        $dataPermissions = $roles->permissions->pluck('id')->toArray();
-
-        return view('admin.role.edit',['roles' => $roles, 'permissions' => $permissions, 'dataPermissions' => $dataPermissions]);
+        
+        return view('admin.role.edit',['roles' => $roles, 'permissions' => $permissions]);
     }    
 
     public function update(UpdateRoleRequest $request, Role $role, RoleService $roleService)

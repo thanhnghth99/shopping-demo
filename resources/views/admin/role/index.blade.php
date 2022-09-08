@@ -56,10 +56,10 @@
                                         </td>
                                         <td class="py-3 px-6 text-center">
                                             <span class="text-gray-600 py-1 px-3 font-medium">
-                                                @if ($role['status'] == 0)
-                                                    disable
-                                                @else
+                                                @if ($role['status'] == Role::STATUS_ENABLE)
                                                     enable
+                                                @else
+                                                    disable
                                                 @endif
                                             </span>
                                         </td>

@@ -15,6 +15,9 @@ class Role extends Model
     use HasSearch;
     use SoftDeletes;
 
+    const STATUS_ENABLE = 1;
+    const STATUS_DISABLE = 0;
+
     protected $fillable = [
         'name',
         'status',

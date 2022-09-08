@@ -46,8 +46,8 @@
                 <x-jet-label for="name" value="Status" style="margin: 15px 0px 0px 0px" />
                 <select name="status" id="status" style="margin: 5px 0px 0px 0px" 
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                    <option value="1">Enable</option>
-                    <option value="0">Disable</option>
+                    <option value="{{ User::STATUS_ENABLE }}">Enable</option>
+                    <option value="{{ User::STATUS_DISABLE }}">Disable</option>
                 </select>
             </div>
 

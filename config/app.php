@@ -211,7 +211,10 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Permission' => App\Models\Permission::class,
+        'Role' => App\Models\Role::class,
+        'User' => App\Models\User::class,
+        'Arr' => Illuminate\Support\Arr::class,
     ])->toArray(),
 
 ];
