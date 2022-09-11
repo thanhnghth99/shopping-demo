@@ -23,10 +23,10 @@ class RoleController extends Controller
         return view('admin.role.index', compact('roles'));
     }
 
-    public function create(Permission $permission)
+    public function create()
     {
         $this->authorize('can_do', ['role create']);
-        $permissions = $permission->all();
+        $permissions = Permission::all();
         return view('admin.role.create', compact('permissions'));
     }
 
@@ -43,11 +43,11 @@ class RoleController extends Controller
             ->with('success', 'Successfully created.');
     }
 
-    public function edit(Role $role, Permission $permission)
+    public function edit($id)
     {
         $this->authorize('can_do', ['role edit']);
-        $roles = $role->with('permissions')->find($role->id)->toArray();
-        $permissions = $permission->all();
+        $roles = Role::with('permissions')->find($id)->toArray();
+        $permissions = Permission::all();
         
         return view('admin.role.edit',['roles' => $roles, 'permissions' => $permissions]);
     }    

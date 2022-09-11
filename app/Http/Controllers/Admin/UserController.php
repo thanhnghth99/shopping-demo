@@ -23,10 +23,10 @@ class UserController extends Controller
         return view('admin.user.index', compact('users'));
     }
 
-    public function create(Role $role)
+    public function create()
     {
         $this->authorize('can_do', ['user create']);
-        $roles = $role->all();
+        $roles = Role::all();
         return view('admin.user.create', compact('roles'));
     }
 
@@ -43,11 +43,11 @@ class UserController extends Controller
             ->with('success', 'Successfully created.');
     }
 
-    public function edit(User $user, Role $role)
+    public function edit(User $user)
     {
         $this->authorize('can_do', ['user edit']);
-        $users = $user->with('roles')->find($user->id)->toArray();
-        $roles = $role->all();
+        $users = User::with('roles')->find($user->id)->toArray();
+        $roles = Role::all();
 
         return view('admin.user.edit',['users' => $users, 'roles' => $roles]);
     }    

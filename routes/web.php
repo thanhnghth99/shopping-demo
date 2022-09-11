@@ -31,6 +31,11 @@ Route::controller(HomeController::class)
     ->name('public.')
     ->group(function () {
         Route::get('/home', 'index')->name('home');
+        Route::get('/cart', 'cart')->name('cart');
+        Route::get('/checkout', 'checkout')->name('checkout');
+        Route::get('/contact', 'contact')->name('contact');
+        Route::get('/detail', 'detail')->name('detail');
+        Route::get('/shop', 'shop')->name('shop');
     });
 
 Route::middleware([

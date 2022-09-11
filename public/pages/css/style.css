@@ -9582,3 +9582,8 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+
+.categories-style {
+  width: calc(100% - 30px);
+  z-index: 1;
+}
