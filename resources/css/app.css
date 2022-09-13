@@ -5,3 +5,7 @@
 .checkbox {
     column-count: 3;
 }
+
+.radio {
+    column-count: 3;
+}

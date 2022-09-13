@@ -18,7 +18,6 @@ class PermissionController extends Controller
     public function create()
     {
         $this->authorize('can_do', ['permission create']);
-        Permission::all();
         return view('admin.permission.create');
     }
 

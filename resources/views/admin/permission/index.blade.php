@@ -44,10 +44,10 @@
                                         </td>
                                         <td class="py-3 px-6 text-center">
                                             <span class="text-gray-600 py-1 px-3 font-medium">
-                                                @if ($permission['status'] == 0)
-                                                    disable
-                                                @else
+                                                @if ($permission['status'] == Permission::STATUS_ENABLE)
                                                     enable
+                                                @else
+                                                    disable
                                                 @endif
                                             </span>
                                         </td>
@@ -60,22 +60,7 @@
                             {{ $permissions->links('vendor.pagination.tailwind') }}
                         </div>
                         <x-slot name="scripts">
-                            <script>
-                                $(document).ready(function() {
-                                    $('#table').removeAttr('width').DataTable({
-                                        "pagingType": "input",
-                                        paging: false,
-                                        info: false,
-                                        "searching": false,
-                                        columnDefs: [
-                                            { targets: "_all", className: 'dt-center', },
-                                            { targets: 0, width: 100, },
-                                            { targets: 1, width: 50, },
-                                        ],
-                                        fixedColumns: true,
-                                    });
-                                });
-                            </script>
+                            <script src="{{ asset('pages/js/datatable.js') }}"></script>
                         </x-slot>
                     </div>
                 </div>
