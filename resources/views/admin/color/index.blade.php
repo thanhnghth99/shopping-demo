@@ -1,16 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Products
+            Colors
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-print-none with-border mb-8">
-                <a href="{{ route('product.create') }}" 
+                <a href="{{ route('color.create') }}" 
                     class="text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-base px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                    Add product
+                    {{ __('Add color') }}
                 </a>
 
                 <div class="mx-auto max-w-md float-right">
@@ -31,86 +31,36 @@
                 </div>
                 
                 <div class="min-w-screen min-h-screen flex justify-center font-sans overflow-hidden">
-                    <div class="w-full">
+                    <div class="w-full lg:w-2/3">
                         <div class="bg-white shadow-md rounded my-6">
                             <table class="min-w-max w-full table-auto cell-border stripe" id="table">
                                 <thead>
                                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                        <th class="py-3 px-6 text-center">ID</th>
-                                        <th class="py-3 px-6 text-center">Products</th>
-                                        <th class="py-3 px-6 text-center">Description</th>
-                                        <th class="py-3 px-6 text-center">Information</th>
-                                        <th class="py-3 px-6 text-center">Price</th>
-                                        <th class="py-3 px-6 text-center">Discount</th>
-                                        <th class="py-3 px-6 text-center">Sub Category</th>
-                                        <th class="py-3 px-6 text-center">Colors</th>
-                                        <th class="py-3 px-6 text-center">Size</th>
-                                        <th class="py-3 px-6 text-center">Status</th>
+                                        <th class="py-3 px-6 text-center">Name</th>
+                                        <th class="py-3 px-6 text-center">Hex</th>
+                                        <th class="py-3 px-6 text-center">Display</th>
                                         <th class="py-3 px-6 text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600 text-sm font-light">
-                                    @foreach($products as $product)
+                                    @foreach($colors as $color)
                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                                         <td class="py-3 px-6 text-center whitespace-nowrap">
                                             <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->id }}</span>
+                                                <span class="font-medium">{{ $color->name }}</span>
                                             </div>
                                         </td>
                                         <td class="py-3 px-6 text-center whitespace-nowrap">
                                             <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
+                                                <span class="font-medium">{{ $color->color }}</span>
                                             </div>
                                         </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->description }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->information }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->price }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->discount }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
-                                            </div>
-                                        </td>
+                                        <td class="py-3 px-6 text-center whitespace-nowrap" style="background-color: {{ $color->color }}"></td>
                                         <td class="py-3 px-6 text-center">
-                                            <span class="text-gray-600 py-1 px-3 font-medium">
-                                                @if ($product['status'] == Product::STATUS_ENABLE)
-                                                    enable
-                                                @else
-                                                    disable
-                                                @endif
-                                            </span>
-                                        </td>
-                                        <td class="py-3 px-6 text-center">
-                                            <form method="POST" action="{{ route('product.destroy', $product->id) }}">
+                                            <form method="POST" action="{{ route('color.destroy', $color->id) }}">
                                                 <div class="flex item-center justify-center">
                                                     <a class="w-4 mr-2 transform hover:text-sky-600 hover:scale-110"
-                                                        href="{{ route('product.edit', $product->id) }}">
+                                                        href="{{ route('color.edit', $color->id) }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                         </svg>
@@ -133,7 +83,7 @@
                             </table>
                         </div>
                         <div class="mt-5">
-                            {{ $products->links('vendor.pagination.tailwind') }}
+                            {{ $colors->links('vendor.pagination.tailwind') }}
                         </div>
                         <x-slot name="scripts">
                             <script src="{{ asset('pages/js/datatable.js') }}"></script>

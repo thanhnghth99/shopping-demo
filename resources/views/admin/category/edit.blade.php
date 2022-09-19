@@ -8,24 +8,24 @@
     <!-- component -->
     <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-[700px]">
-            <form action="{{ route('category.update', $categories['id']) }}" method="POST">
+            <form action="{{ route('category.update', $categories->id) }}" method="POST">
                 @method('PUT')
                 {{csrf_field()}}
                 <div>
-                    <x-forms.input label="Name" name="name" id="name" placeholder="Name" value="{{ $categories['name'] }}" required/>
+                    <x-forms.input label="Name" name="name" id="name" placeholder="Name" value="{{ $categories->name }}" required/>
                 </div>
                 <div class="mb-5">
                     <label for="exampleInputEmail1" class="mb-3 block text-xl font-medium text-[#07074D]">Status</label>
-                    <select name="status" id="status" 
+                    <select name="status" id="status" value="{{ $categories->status }}"
                             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                             <option 
-                                @if($categories['status'] == Category::STATUS_ENABLE)
+                                @if($categories->status == Category::STATUS_ENABLE)
                                     selected
                                 @endif
                                 value="{{ Category::STATUS_ENABLE }}">Enable
                             </option>
                             <option 
-                                @if ($categories['status'] == Category::STATUS_DISABLE)
+                                @if ($categories->status == Category::STATUS_DISABLE)
                                     selected
                                 @endif
                                 value="{{ Category::STATUS_DISABLE }}">Disable

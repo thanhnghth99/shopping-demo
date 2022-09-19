@@ -216,6 +216,9 @@ return [
         'Permission' => App\Models\Permission::class,
         'Category' => App\Models\Category::class,
         'SubCategory' => App\Models\SubCategory::class,
+        'Product' => App\Models\Product::class,
+        'Size' => App\Models\Size::class,
+        'Color' => App\Models\Color::class,
     ])->toArray(),
 
 ];

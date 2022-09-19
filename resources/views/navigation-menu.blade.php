@@ -44,12 +44,22 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('subcategory.index') }}" :active="request()->routeIs('subcategory.index')">
-                        Subcategories
+                        Sub Categories
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
                         Products
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('size.index') }}" :active="request()->routeIs('size.index')">
+                        Sizes
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('color.index') }}" :active="request()->routeIs('color.index')">
+                        Colors
                     </x-jet-nav-link>
                 </div>
             </div>

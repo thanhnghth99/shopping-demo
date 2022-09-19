@@ -46,7 +46,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $this->authorize('can_do', ['role edit']);
-        $roles = Role::with('permissions')->find($id)->toArray();
+        $roles = Role::with('permissions')->find($id);
         $permissions = Permission::all();
         
         return view('admin.role.edit',['roles' => $roles, 'permissions' => $permissions]);

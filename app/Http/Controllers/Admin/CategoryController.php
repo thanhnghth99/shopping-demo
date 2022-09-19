@@ -25,7 +25,6 @@ class CategoryController extends Controller
 
     public function create()
     {
-        Category::all();
         return view('admin.category.create');
     }
 
@@ -44,7 +43,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::find($id)->toArray();
+        $categories = Category::find($id);
         
         return view('admin.category.edit',['categories' => $categories]);
     }    

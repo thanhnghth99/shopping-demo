@@ -9,23 +9,23 @@
         
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('user.update', $users['id']) }}">
+        <form method="POST" action="{{ route('user.update', $users->id) }}">
             @csrf
             @method('PUT')
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $users['name'] }}" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $users->name }}" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $users['email'] }}" required />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $users->email }}" required />
             </div>
             
             <div class="mb-5 mt-5">
                 <div>
                     <x-jet-label for="name" value="Roles" />
-                    <x-forms.checkbox-list id="role" name="role[]" :items="$roles" :selected="Arr::pluck($users['roles'], 'id')"/>
+                    <x-forms.checkbox-list id="role" name="role[]" :items="$roles" :selected="Arr::pluck($users->roles, 'id')"/>
                     <div class="mt-5">
                         <a href="{{ route('role.create') }}" class="w-full rounded-md border border-[#07074D] bg-white px-1 mb-3 text-xm font-medium text-[#07074D]">+ Add role</a>
                     </div>
@@ -51,16 +51,16 @@
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="mb-3 block text-xl font-medium text-[#07074D]">Role status</label>
-                <select name="status" id="cars" value="{{ $users['status'] }}"
+                <select name="status" id="cars" value="{{ $users->status }}"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                     <option 
-                        @if($users['status'] == User::STATUS_ENABLE)
+                        @if($users->status == User::STATUS_ENABLE)
                             selected
                         @endif
                         value="{{ User::STATUS_ENABLE }}">Enable
                     </option>
                     <option 
-                        @if ($users['status'] == User::STATUS_DISABLE)
+                        @if ($users->status == User::STATUS_DISABLE)
                             selected
                         @endif
                         value="{{ User::STATUS_DISABLE }}">Disable
@@ -75,7 +75,7 @@
                 </a>
                 <button class="hover:shadow-form rounded-md bg-[red] py-3 px-8 text-base font-semibold text-white outline-none text-right"
                     role="button" style="float: right">
-                    Create
+                    Edit
                 </button>
             </div>
         </form>

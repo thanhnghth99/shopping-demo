@@ -46,7 +46,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $this->authorize('can_do', ['user edit']);
-        $users = User::with('roles')->find($user->id)->toArray();
+        $users = User::with('roles')->find($user->id);
         $roles = Role::all();
 
         return view('admin.user.edit',['users' => $users, 'roles' => $roles]);
