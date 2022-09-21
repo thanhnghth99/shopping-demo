@@ -32,6 +32,7 @@ class StoreProductRequest extends FormRequest
             'subcategory' => 'nullable|array',
             'color' => 'nullable|array',
             'size' => 'nullable|array',
+            'image' => 'required|array',
             'status' => 'required',
         ];
     }

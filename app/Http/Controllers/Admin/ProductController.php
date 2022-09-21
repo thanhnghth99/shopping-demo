@@ -26,9 +26,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        $colors = Color::all();
-        $sizes = Size::all();
-        $subCategories = SubCategory::all();
+        $colors = Color::all()->sortBy('name');
+        $sizes = Size::all()->sortBy('name');
+        $subCategories = SubCategory::all()->sortBy('name');
         return view('admin.product.create', compact('colors', 'sizes', 'subCategories'));
     }
 
@@ -48,9 +48,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $products = Product::find($id);
-        $colors = Color::all();
-        $sizes = Size::all();
-        $subCategories = SubCategory::all();
+        $colors = Color::all()->sortBy('name');
+        $sizes = Size::all()->sortBy('name');
+        $subCategories = SubCategory::all()->sortBy('name');
 
         return view('admin.product.edit', compact('products', 'colors', 'sizes', 'subCategories'));
     }

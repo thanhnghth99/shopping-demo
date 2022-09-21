@@ -7,7 +7,7 @@
 
     <!-- component -->
     <div class="flex items-center justify-center p-12">
-        <div class="mx-auto w-full max-w-[700px]">
+        <div class="mx-auto w-full max-w-[1000px]">
             <form action="{{ route('product.update', $products->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 {{csrf_field()}}
@@ -15,16 +15,27 @@
                     <x-forms.input label="Name" name="name" id="name" placeholder="Name" value="{{ $products->name }}" required/>
                 </div>
                 <div>
-                    <x-forms.input label="Description" name="description" id="description" placeholder="Description" value="{{ $products->description }}" required/>
+                    <label for="description" class="mb-3 block text-xl font-medium text-[#07074D]">Description</label>
+                    <textarea name="description" id="description" class="ckeditor">{{ $products->description }}</textarea>
                 </div>
-                <div>
-                    <x-forms.input label="Information" name="information" id="information" placeholder="Information" value="{{ $products->information }}" required/>
+                <div class="mb-5">
+                    <label for="information" class="mt-5 mb-3 block text-xl font-medium text-[#07074D]">Information</label>
+                    <textarea name="information" id="information" class="ckeditor">{{ $products->information }}</textarea>
                 </div>
                 <div>
                     <x-forms.input label="Price" name="price" id="price" placeholder="Price" value="{{ $products->price }}" required/>
                 </div>
                 <div>
                     <x-forms.input label="Discount" name="discount" id="discount" placeholder="Discount" value="{{ $products->discount }}"/>
+                </div>
+                <div>
+                    <x-forms.input label="Image" name="image[]" id="image" type="file" multiple/>
+                    <p class="w-full text-base text-[#6B7280] mt-1 mb-5" id="image">SVG, PNG, JPG or GIF</p>
+                    <div class="img-preview grid grid-cols-6 gap-4">
+                        @foreach($products->images as $image)
+                            <img src="{{ asset('images/'.$image->name) }}" width=100px/>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="mb-5">
                     <div>
@@ -84,4 +95,7 @@
             </form>
         </div>
     </div>
+    <x-slot name="scripts">
+        <script src="{{ asset('pages/js/product.js') }}"></script>
+    </x-slot>
 </x-app-layout>

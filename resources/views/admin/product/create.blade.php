@@ -7,23 +7,30 @@
 
     <!-- component -->
     <div class="flex items-center justify-center p-12">
-        <div class="mx-auto w-full max-w-[700px]">
+        <div class="mx-auto w-full max-w-[1000px]">
             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div>
                     <x-forms.input label="Name" name="name" id="name" placeholder="Name" required/>
                 </div>
                 <div>
-                    <x-forms.input label="Description" name="description" id="description" placeholder="Description" required/>
+                    <label for="description" class="mb-3 block text-xl font-medium text-[#07074D]">Description</label>
+                    <textarea name="description" id="description" class="ckeditor"></textarea>
                 </div>
-                <div>
-                    <x-forms.input label="Information" name="information" id="information" placeholder="Information" required/>
+                <div class="mb-5">
+                    <label for="information" class="mt-5 mb-3 block text-xl font-medium text-[#07074D]">Information</label>
+                    <textarea name="information" id="information" class="ckeditor"></textarea>
                 </div>
                 <div>
                     <x-forms.input label="Price" name="price" id="price" placeholder="Price" required/>
                 </div>
                 <div>
                     <x-forms.input label="Discount" name="discount" id="discount" placeholder="Discount"/>
+                </div>
+                <div>
+                    <x-forms.input label="Image" name="image[]" id="image" type="file" multiple required/>
+                    <p class="w-full text-base text-[#6B7280] mt-1 mb-5" id="image">SVG, PNG, JPG or GIF</p>
+                    <div class="img-preview grid grid-cols-6 gap-4"></div>
                 </div>
                 <div class="mb-5">
                     <div>
@@ -73,4 +80,7 @@
             </form>
         </div>
     </div>
+    <x-slot name="scripts">
+        <script src="{{ asset('pages/js/product.js') }}"></script>
+    </x-slot>
 </x-app-layout>

@@ -9,3 +9,7 @@
 .radio {
     column-count: 3;
 }
+
+.ck-editor__editable {
+    min-height: 300px;
+}

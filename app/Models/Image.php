@@ -13,6 +13,10 @@ class Image extends Model
     use HasPagination;
     use HasSearch;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function products()
     {
         return $this->morphToMany(Product::class, 'productable');

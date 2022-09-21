@@ -38,8 +38,6 @@
                                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                         <th class="py-3 px-6 text-center">ID</th>
                                         <th class="py-3 px-6 text-center">Products</th>
-                                        <th class="py-3 px-6 text-center">Description</th>
-                                        <th class="py-3 px-6 text-center">Information</th>
                                         <th class="py-3 px-6 text-center">Price</th>
                                         <th class="py-3 px-6 text-center">Discount</th>
                                         <th class="py-3 px-6 text-center">Sub Category</th>
@@ -52,54 +50,50 @@
                                 <tbody class="text-gray-600 text-sm font-light">
                                     @foreach($products as $product)
                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <td class="py-3 px-6 text-center">
                                             <div class="flex items-center justify-center">
                                                 <span class="font-medium">{{ $product->id }}</span>
                                             </div>
                                         </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->description }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->information }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->price }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->discount }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
-                                            <div class="flex items-center justify-center">
-                                                <span class="font-medium">{{ $product->name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-6 text-center whitespace-nowrap">
+                                        <td class="py-3 px-6 text-center">
                                             <div class="flex items-center justify-center">
                                                 <span class="font-medium">{{ $product->name }}</span>
                                             </div>
                                         </td>
                                         <td class="py-3 px-6 text-center">
+                                            <div class="flex items-center justify-center">
+                                                <span class="font-medium">{{ $product->price }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            <div class="flex items-center justify-center">
+                                                <span class="font-medium">{{ $product->discount }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            @foreach($product->subcategories->pluck('name') as $subCategory)
+                                            <div class="flex items-center justify-center">
+                                                <span class="font-medium">{{ $subCategory }}</span>
+                                            </div>
+                                            @endforeach
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            @foreach($product->colors->pluck('name') as $color)
+                                            <div class="flex items-center justify-center">
+                                                <span class="font-medium">{{ $color }}</span>
+                                            </div>
+                                            @endforeach
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            @foreach($product->sizes->pluck('name') as $size)
+                                            <div class="flex items-center justify-center">
+                                                <span class="font-medium">{{ $size }}</span>
+                                            </div>
+                                            @endforeach
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
                                             <span class="text-gray-600 py-1 px-3 font-medium">
-                                                @if ($product['status'] == Product::STATUS_ENABLE)
+                                                @if ($product->status == Product::STATUS_ENABLE)
                                                     enable
                                                 @else
                                                     disable

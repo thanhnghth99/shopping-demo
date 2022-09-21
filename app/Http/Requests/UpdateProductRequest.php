@@ -32,6 +32,7 @@ class UpdateProductRequest extends FormRequest
             'subcategory' => 'nullable|array',
             'color' => 'nullable|array',
             'size' => 'nullable|array',
+            'image' => 'nullable|array',
             'status' => 'required',
         ];
     }
