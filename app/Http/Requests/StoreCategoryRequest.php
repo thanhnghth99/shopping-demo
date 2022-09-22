@@ -25,6 +25,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'image' => 'required',
             'status' => 'required',
             'subcategory' => 'nullable|array',
         ];

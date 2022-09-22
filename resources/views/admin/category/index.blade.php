@@ -37,6 +37,7 @@
                                 <thead>
                                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                         <th class="py-3 px-6 text-center">Categories</th>
+                                        <th class="py-3 px-6 text-center">Image</th>
                                         <th class="py-3 px-6 text-center">Status</th>
                                         <th class="py-3 px-6 text-center">Actions</th>
                                     </tr>
@@ -47,6 +48,11 @@
                                         <td class="py-3 px-6 text-center whitespace-nowrap">
                                             <div class="flex items-center justify-center">
                                                 <span class="font-medium">{{ $category->name }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-6 text-center whitespace-nowrap">
+                                            <div class="flex items-center justify-center">
+                                                <img src="{{ asset('images/'.$category->image) }}" width=100px/>
                                             </div>
                                         </td>
                                         <td class="py-3 px-6 text-center">

@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Pages;
 
+use App\Models\Category as ModelsCategory;
 use Illuminate\View\Component;
 
 class Category extends Component
@@ -16,6 +17,12 @@ class Category extends Component
     public function __construct($class = null)
     {
         $this->class = $class;
+    }
+
+    public function getCategory()
+    {
+        $categories = ModelsCategory::all()->sortBy('name');
+        return $categories;
     }
 
     /**

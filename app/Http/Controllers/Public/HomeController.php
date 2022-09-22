@@ -3,13 +3,20 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        $categories = Category::all()->sortBy('name');
+        $latestProducts = Product::where('status', Product::STATUS_ENABLE)->latest()->take(4)->get();
+        
+        return view('pages.home', compact('categories', 'latestProducts'));
     }
 
     public function cart()
@@ -35,6 +42,12 @@ class HomeController extends Controller
         
     public function shop()
     {
-        return view('pages.shop');
+        $products = Product::where('status', Product::STATUS_ENABLE)->latest()->get();
+        $categories = Category::all()->sortBy('name');
+        $colors = Color::all()->sortBy('name');
+        $sizes = Size::all()->sortBy('name');
+        // dd($colors[0]->products->count());
+
+        return view('pages.shop', compact('products', 'colors', 'sizes', 'categories'));
     }
 }
